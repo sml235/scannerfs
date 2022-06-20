@@ -1,8 +1,21 @@
+package com.sml.scanner.model;
+
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "scanned_files")
+@Table(name = "scanned_files",
+        indexes = {
+                @Index(columnList = "file_name", name = "file_name_idx")
+        })
 public class ScannedFile {
+    @Override
+    public String toString() {
+        return "ScannedFile{" +
+                "fileId=" + fileId +
+                ", catPath='" + catPath + '\'' +
+                ", fileName='" + fileName + '\'' +
+                '}';
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

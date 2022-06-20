@@ -1,3 +1,5 @@
+package com.sml.scanner.service;
+
 import java.nio.file.Path;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -17,7 +19,7 @@ public class FileScannerMultithreadImpl implements FileScanner {
         for (int i = 0; i < NUM_THREADS; i++) {
             executorService.submit(new DirectoryScanTask(queue, files));
             try {
-                Thread.sleep(10);
+                Thread.sleep(10); //waiting for first thread start filling queue
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

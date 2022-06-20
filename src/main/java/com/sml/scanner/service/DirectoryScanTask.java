@@ -1,10 +1,13 @@
+package com.sml.scanner.service;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
+import java.util.stream.Collectors;
 
-class DirectoryScanTask implements Runnable {
+public class DirectoryScanTask implements Runnable {
 
     private BlockingQueue<Path> queue;
     private List<Path> files;
@@ -19,7 +22,7 @@ class DirectoryScanTask implements Runnable {
         List<Path> paths;
         while (queue.peek() != null) {
             try {
-                paths = Files.list(queue.take()).toList();
+                paths = Files.list(queue.take()).collect(Collectors.toList());
             } catch (IOException e) {
                 throw new RuntimeException(e);
             } catch (InterruptedException e) {

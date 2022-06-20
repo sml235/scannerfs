@@ -1,3 +1,5 @@
+package com.sml.scanner.service;
+
 import java.nio.file.Path;
 import java.util.List;
 
